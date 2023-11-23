@@ -1,0 +1,19 @@
+.booking {
+  display: flex;
+  justify-content: center;
+}
+
+.booking__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+}
+
+.booking__title {
+  margin: 0 0 50px;
+  font-size: 46px;
+  font-weight: 800;
+}

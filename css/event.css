@@ -1,0 +1,74 @@
+.event {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+
+  color: #fff;
+  background-color: #3d496a;
+  background-image: url("../img/bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi),
+(min-resolution: 1.5dppx) {
+  .event {
+    background-image: url("../img/bg@2x.jpg");
+  }
+}
+
+.event__title {
+  margin-bottom: 62px;
+  font-size: 100px;
+  font-weight: 800;
+}
+
+.event__info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 62px;
+}
+
+.event__info-item {
+  font-size: 30px;
+  line-height: 1.4;
+}
+
+.event__info-item:not(:last-of-type) {
+  margin-right: 80px;
+}
+
+.event__info-number {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 80px;
+  font-weight: 800;
+}
+
+.event__btn {
+  line-height: 1.4;
+}
+
+.event__btn--reserve {
+  min-width: 325px;
+  margin-bottom: 24px;
+  padding: 17px 36px 16px;
+  font-size: 24px;
+  color: #1a1a1a;
+  background-color: #ffc119;
+  border-radius: 36px;
+}
+
+.event__btn--edit {
+  display: flex;
+  align-items: center;
+}
+
+.event__btn--edit svg {
+  margin-left: 8px;
+}

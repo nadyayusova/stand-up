@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StandUp Party Booking</title>
+</head>
+
+<body>
+  <section class="event container">
+    <h1 class="event__title">StandUp Party</h1>
+
+    <ul class="event__info">
+      <li class="event__info-item event__info-item--day">
+        <span class="event__info-number">1</span>день
+      </li>
+      <li class="event__info-item event__info-item--hall">
+        <span class="event__info-number">2</span>зала
+      </li>
+      <li class="event__info-item event__info-item--duration">
+        <span class="event__info-number">12</span>часов
+      </li>
+      <li class="event__info-item event__info-item--comedians">
+        <span class="event__info-number">15</span>комиков
+      </li>
+    </ul>
+
+    <button class="event__btn event__btn--reserve" type="button">Забронировать места</button>
+
+    <button class="event__btn event__btn--edit" type="button">
+      <span class="event__btn-text">Редактировать бронь</span>
+      <svg width=" 24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M13 3C13.2549 3.00028 13.5 3.09788 13.6854 3.27285C13.8707 3.44782 13.9822 3.68695 13.9972 3.94139C14.0121 4.19584 13.9293 4.44638 13.7657 4.64183C13.6021 4.83729 13.3701 4.9629 13.117 4.993L13 5H5V19H19V11C19.0003 10.7451 19.0979 10.5 19.2728 10.3146C19.4478 10.1293 19.687 10.0178 19.9414 10.0028C20.1958 9.98789 20.4464 10.0707 20.6418 10.2343C20.8373 10.3979 20.9629 10.6299 20.993 10.883L21 11V19C21.0002 19.5046 20.8096 19.9906 20.4665 20.3605C20.1234 20.7305 19.6532 20.9572 19.15 20.995L19 21H5C4.49542 21.0002 4.00943 20.8096 3.63945 20.4665C3.26947 20.1234 3.04284 19.6532 3.005 19.15L3 19V5C2.99984 4.49542 3.19041 4.00943 3.5335 3.63945C3.87659 3.26947 4.34684 3.04284 4.85 3.005L5 3H13ZM19.243 3.343C19.423 3.16365 19.6644 3.05953 19.9184 3.05177C20.1723 3.04402 20.4197 3.13322 20.6103 3.30125C20.8008 3.46928 20.9203 3.70355 20.9444 3.95647C20.9685 4.2094 20.8954 4.46201 20.74 4.663L20.657 4.758L10.757 14.657C10.577 14.8363 10.3356 14.9405 10.0816 14.9482C9.82767 14.956 9.58029 14.8668 9.38972 14.6988C9.19916 14.5307 9.07969 14.2964 9.0556 14.0435C9.03151 13.7906 9.10459 13.538 9.26 13.337L9.343 13.243L19.243 3.343Z"
+          fill="white" />
+      </svg>
+    </button>
+  </section>
+
+  <section class="booking">
+    <div class="booking__container container">
+      <h2 class="booking__title">Забронируйте место в зале</h2>
+
+      <form class="booking__form form">
+        <fieldset class="form__block">
+          <legend class="form__subtitle">Введите данные</legend>
+          <div class="form__inputs">
+            <label><input class="form__input form__input--name" type="text" name="fullName"
+                placeholder="Имя Фамилия"></label>
+            <label><input class="form__input form__input--phone" type="text" name="phone" placeholder="Телефон"></label>
+            <label><input class="form__input form__input--ticket" type="text" name="ticketNumber"
+                placeholder="Номер билета"></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form__block">
+          <legend class="form__subtitle">Введите данные</legend>
+          <ul class="form__comedians-list">
+            <li class="form__comedian">
+              <label>
+                <select class="form__select" name="comedian">
+                  <option value="" disabled hidden>Выбрать комика</option>
+                  <option value="2" selected>Юлия Ахмедова</option>
+                  <option value="4">Слава Комиссаренко</option>
+                </select>
+              </label>
+
+              <label>
+                <select class="form__select" name="comedian">
+                  <option value="" disabled hidden>Время</option>
+                  <option value="14:00" selected>14:00</option>
+                  <option value="16:00">16:00</option>
+                </select>
+              </label>
+
+              <button class="form__btn-hall" type="button">
+                <span class="form__btn-text">Зал 1</span>
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M9 3.5H3V9.5H5V5.5H9V3.5ZM3 21.5V15.5H5V19.5H9V21.5H3ZM15 3.5V5.5H19V9.5H21V3.5H15ZM19 15.5H21V21.5H15V19.5H19V15.5ZM7 7.5H11V11.5H7V7.5ZM7 13.5H11V17.5H7V13.5ZM17 7.5H13V11.5H17V7.5ZM13 13.5H17V17.5H13V13.5Z"
+                    fill="#1A1A1A" />
+                </svg>
+              </button>
+            </li>
+
+            <li class="form__comedian">
+              <label>
+                <select class="form__select" name="comedian">
+                  <option value="" disabled hidden>Выбрать комика</option>
+                  <option value="2">Юлия Ахмедова</option>
+                  <option value="4" selected>Слава Комиссаренко</option>
+                </select>
+              </label>
+
+              <label>
+                <select class="form__select" name="comedian">
+                  <option value="" disabled hidden>Время</option>
+                  <option value="14:00">14:00</option>
+                  <option value="16:00" selected>16:00</option>
+                </select>
+              </label>
+
+              <button class="form__btn-hall" type="button">
+                <span class="form__btn-text">Зал 1</span>
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M9 3.5H3V9.5H5V5.5H9V3.5ZM3 21.5V15.5H5V19.5H9V21.5H3ZM15 3.5V5.5H19V9.5H21V3.5H15ZM19 15.5H21V21.5H15V19.5H19V15.5ZM7 7.5H11V11.5H7V7.5ZM7 13.5H11V17.5H7V13.5ZM17 7.5H13V11.5H17V7.5ZM13 13.5H17V17.5H13V13.5Z"
+                    fill="#1A1A1A" />
+                </svg>
+              </button>
+            </li>
+
+            <li class="form__comedian">
+              <label>
+                <select class="form__select not-selected" name="comedian">
+                  <option value="" disabled selected hidden>Выбрать комика</option>
+                  <option value="2">Юлия Ахмедова</option>
+                  <option value="4">Слава Комиссаренко</option>
+                </select>
+              </label>
+
+              <label>
+                <select class="form__select not-selected" name="comedian">
+                  <option value="" disabled selected hidden>Время</option>
+                  <option value="14:00">14:00</option>
+                  <option value="16:00">16:00</option>
+                </select>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+        <button class="form__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
