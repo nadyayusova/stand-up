@@ -26,15 +26,41 @@
 }
 
 .form__inputs > * {
-  width: calc((100% - 16px) / 3)
+  width: calc((100% - 16px) / 3);
+  max-width: 380px;
 }
 
 .form__input {
   width: 100%;
-  padding: 10px 16px 9px;
+  padding: 9px 16px 8px;
+  font-size: 18px;
   line-height: 1.4;
-  border: none;
+  color: #1a1a1a;
+  background-color: #fff;
+  border: 1px solid #fff;
   border-radius: 8px;
+  outline: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .form__input:hover {
+    background-color: #f9f9f9;
+  }
+}
+
+.form__input:focus,
+.form__input:active {
+  background-color: #fff;
+  border-color: #bcbcbc;
+}
+
+.form__input.is-valid {
+  border-color: #00992b;
+}
+
+.form__input.is-invalid {
+  border-color: #990000;
 }
 
 .form__comedians-list {
@@ -52,37 +78,48 @@
   margin-bottom: 20px;
 }
 
-.form__comedian :not(:last-child) {
+.form__comedian > :not(:last-child) {
   margin-right: 8px;
 }
 
 .form__comedian > *:first-child {
-  width: calc((100% - 16px) / 3);
+  flex-grow: 1;
+  max-width: 380px;
 }
 
-.form__comedian > *:nth-child(2),
-.form__comedian > *:nth-child(3) {
-  width: calc((100% - 16px) / 6);
+.form__comedian > *:nth-child(2) {
+  flex-grow: 1;
+  max-width: 183px;
 }
 
 .form__select {
   width: 100%;
-  padding: 10px 16px 9px;
+  /* padding: 9px 16px 8px; */
+  /* для tom-select */
+  padding: 0;
+  font-size: 18px;
   line-height: 1.4;
   color: #1a1a1a;
   background-color: #fff;
-  border: none;
+  border: 1px solid #fff;
   border-radius: 8px;
-}
-
-.form__select.not-selected {
-  color: #bababa;
 }
 
 .form__btn-hall {
   display: inline-flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 32px 10px 10px;
+  text-wrap: nowrap;
+  background: url('../img/gg_qr.svg') right/24px no-repeat;
+}
+
+.form__btn-hall[disabled] {
+  background: none;
+  cursor: auto;
+}
+
+.form__btn-hall svg {
+  margin-left: 8px;
 }
 
 .form__submit {
@@ -116,4 +153,38 @@
 
 ::-ms-input-placeholder {
   color: #bababa;
+}
+
+@media (max-width: 1024px) {
+  .form__block {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form__inputs {
+    flex-direction: column;
+  }
+
+  .form__inputs :not(:last-of-type) {
+    margin: 0 0 8px;
+  }
+
+  .form__inputs > * {
+    width: 100%;
+    max-width: unset;
+  }
+}
+
+@media (max-width: 680px) {
+  .form__comedian {
+    flex-wrap: wrap;
+  }
+
+  .form__comedian > *:first-child {
+    width: 100%;
+    max-width: unset;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
 }

@@ -17,3 +17,21 @@
   font-size: 46px;
   font-weight: 800;
 }
+
+@media (max-width: 1024px) {
+  .booking__title {
+    margin: 0 0 40px;
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 680px) {
+  .booking__container {
+    padding: 30px 16px 40px;
+  }
+
+  .booking__title {
+    margin: 0 0 32px;
+    font-size: 24px;
+  }
+}
