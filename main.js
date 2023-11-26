@@ -1,9 +1,15 @@
+import {Notification} from './scripts/Notification';
 import './style.css'
 import TomSelect from 'tom-select';
+import Inputmask from 'inputmask';
+import JustValidate from 'just-validate';
 
 const MAX_COMEDIANS = 6;
 
+const notification = Notification.getInstance();
+
 const bookingComediansList = document.querySelector('.form__comedians-list');
+const bookingForm = document.querySelector('.booking__form');
 
 const createComedianBlock = (comedians) => {
   const bookingComedian = document.createElement('li');
@@ -21,7 +27,7 @@ const createComedianBlock = (comedians) => {
   bookingSelectTime.name = 'time';
   bookingLabelTime.append(bookingSelectTime);
 
-  const inputHidden = document.createElement('hidden');
+  const inputHidden = document.createElement('input');
   inputHidden.type = 'hidden';
   inputHidden.name = 'booking';
 
@@ -30,7 +36,7 @@ const createComedianBlock = (comedians) => {
   bookingHall.setAttribute('disabled', true);
   bookingHall.classList.add('form__btn-hall');
 
-  bookingComedian.append(bookingLabelComedian, bookingLabelTime, bookingHall);
+  bookingComedian.append(bookingLabelComedian, bookingLabelTime, bookingHall, inputHidden);
 
   const bookingTomSelectComedian = new TomSelect(bookingSelectComedian, {
     hideSelected: true,
@@ -113,6 +119,92 @@ const init = async () => {
   const comedianBlock = createComedianBlock(comedians);
 
   bookingComediansList.append(comedianBlock);
+
+  const validate = new JustValidate(bookingForm, {
+    errorFieldCssClass: 'is-invalid',
+    successFieldCssClass: 'is-valid',
+  });
+
+  const fullName = document.querySelector('#fullName');
+  const phone = document.querySelector('#phone');
+  const ticket = document.querySelector('#ticketNumber');
+
+  new Inputmask('+7(999)-999-9999').mask(phone);
+  new Inputmask('99999999').mask(ticket);
+
+  validate
+    .addField(fullName, [{
+      rule: 'required',
+      errorMessage: 'Заполните имя',
+    },
+    ])
+    .addField(phone, [{
+      rule: 'required',
+      errorMessage: 'Заполните телефон',
+    },
+    {
+      validator(value, context) {
+        // проверить телефон по маске
+        const phoneVal = phone.inputmask.unmaskedvalue();
+        console.log(phoneVal);
+        return phoneVal.length === 10 && !!Number(phoneVal);
+      },
+      errorMessage: 'Некорректный телефон',
+    },
+    ])
+    .addField(ticket, [{
+      rule: 'required',
+      errorMessage: 'Заполните номер билета',
+    },
+    {
+      validator(value, context) {
+        // проверить номер билета
+        const ticketVal = ticket.inputmask.unmaskedvalue();
+        return ticketVal.length === 8 && !!Number(ticketVal);
+      },
+      errorMessage: 'Неверный номер билета',
+    },
+    ])
+    .onFail((fields) => {
+      let errorMessage = '';
+      for (const key in fields) {
+        if (!Object.hasOwnProperty.call(fields, key)) {
+          continue;
+        }
+
+        const element = fields[key];
+        if (!element.isValid) {
+          errorMessage += `${element.errorMessage}, `;
+        }
+      }
+
+      notification.show(errorMessage.slice(0, -2), false);
+    });
+
+  bookingForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const data = {booking: []};
+    const times = new Set();
+
+    const fd = new FormData(bookingForm);
+    fd.forEach((value, field) => {
+      if (field === 'booking') {
+        const [comedian, time] = value.split(',');
+
+        if (comedian && time) {
+          data.booking.push({comedian, time});
+          times.add(time);
+        }
+
+      } else {
+        data[field] = value;
+      }
+
+      if (times.size !== data.booking.length) {
+        notification.show('Нельзя быть в одно время на двух выступлениях', false);
+      }
+    });
+  });
 };
 
 window.addEventListener('load', () => {
